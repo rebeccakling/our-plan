@@ -1,0 +1,22 @@
+{
+  "name": "foodie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rebeccakling/foodie.git"
+  },
+  "keywords": [
+    "mat"
+  ],
+  "author": "kling.rebecca@hotmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rebeccakling/foodie/issues"
+  },
+  "homepage": "https://github.com/rebeccakling/foodie#readme"
+}
