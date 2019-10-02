@@ -1,29 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import FirebaseManager from  './components/FirebaseManager'
 
-function App() {
 
-  return (
-    <div className="App">
-      <FirebaseManager />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      data: [
+        {message: 'Loading', name: 'whatever'},
+      ]
+    }
+  }
+  render() {
+    
+    return (
+      <div className="App">
+        <FirebaseManager dataSync={(payload) => {
+          this.setState({data: payload})
+        }}/>
+        <h1 className="title font">Hej</h1>
+        <ul>
+          {this.state.data.map((item, i) => {
+            return (<li key={['item',i].join('-')} >{item.message}</li>) 
+          })}
+        </ul>
+        
+      </div>
+    )
+  }
 }
+
 
 export default App;

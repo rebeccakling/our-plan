@@ -1,17 +1,20 @@
 import React from "react"
 import Firebase, { signInWithEmailAndPassword } from "./../../utils/connectFirebase"
+import PropTypes from 'proptypes'
 
 class FirebaseManager extends React.Component {
 
     constructor() {
         super()
         this.sync = this.sync.bind(this)
-
+        this.onSync = this.onSync.bind(this)
+    }
+    onSync(payload) {
+        this.props.dataSync(payload)
     }
 
     sync() {
-        console.log('i sync')
-        console.log(Firebase)
+
         let items = []
         const db = Firebase.database()
         const rootRef = db.ref('messages')
@@ -20,20 +23,29 @@ class FirebaseManager extends React.Component {
             snap.forEach(childSnapshot => {
               items.push({...childSnapshot.val(), key: childSnapshot.key})
           })
-          console.log('items: ', items)
+          this.onSync(items)
+
         })        
     }
 
     componentDidMount() {
-        signInWithEmailAndPassword('someEmail@gmail.com', '12344').then(
+        signInWithEmailAndPassword('mymail@gmail.com', '12344A').then(user => {
             this.sync() 
-        )
-        
+        })
     }
 
     render() {
         return null
     }
 }
+FirebaseManager.defaultProps = {
+  dataSync: () => {}
+}
+/*
+FirebaseManager.proptypes = {
+    dataSync: PropTypes.func,
+}
+*/
+
 
 export default FirebaseManager
