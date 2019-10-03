@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import firebase from 'firebase';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SignIn from 'components/Auth/signIn';
 
