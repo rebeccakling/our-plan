@@ -2,31 +2,15 @@ import React from 'react';
 import './App.css';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import SignIn from 'components/Auth/signIn';
 
 
-
-firebase.initializeApp({ 
-      apiKey: "AIzaSyD__stvI0GuA21uUmghVZpeb5tHCgyTw8A",
-      authDomain: "foodie-82b8e.firebaseapp.com"
-    })
 
 class App extends React.Component {
-  state={ isSignIn: false }
-  uiConfig = {
-    signInFlow: "popup",
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID
-    ], 
-    callback: {
-      signInSuccess: () => false
-    }
-  }
-
-  componentDidMount = () => {
-    firebase.auth().onAuthStateChanged(user => {
-      this.setState({ isSignIn: !!user })
-    })
+  state={
+    isSignIn: false,
+    user: {},
   }
 
 
@@ -38,33 +22,42 @@ class App extends React.Component {
   //     ]
   //   }
   // }
-  render() { 
+
+  
+	componentDidMount = () => {
+		firebase.auth().onAuthStateChanged(user => {
+			this.setState({ isSignIn: !!user, user })
+		})
+	}  
+  render() {
     return (
+      <BrowserRouter>
         <div className="App">
+          <Switch>
+            <Route exact path="/" component={ SignIn } />
+          </Switch>
           {this.state.isSignIn ? (
-            <span>
-            <div>Signed In</div>   
-            <button onClick={()=>firebase.auth().signOut()}>Sign Out</button>
-            <h1>Välkommen {firebase.auth().currentUser.displayName}</h1>
-            </span>
-          ) : (
-            <StyledFirebaseAuth
-            uiConfig={this.uiConfig}
-            firebaseAuth={firebase.auth()} 
-            />
+            <div>
+                {this.state.user.displayName}
+            </div>
+            ) : (
+              <div>
+                 <h1>Vänligen logga in</h1>
+              </div>
           )}
 
 
-         {/* <FirebaseManager dataSync={(payload) => {
-          this.setState({data: payload}) }} />
-        <h1>Hej</h1>
-        <ul>
-          {this.state.data.map((item, i) => {
-            return (<li key={['item',i].join('-')} >{item.message}</li>) 
-          })} 
-        </ul> */}
+          {/* <FirebaseManager dataSync={(payload) => {
+            this.setState({data: payload}) }} />
+            <h1>Hej</h1>
+          <ul>
+            {this.state.data.map((item, i) => {
+              return (<li key={['item',i].join('-')} >{item.message}</li>) 
+            })} 
+          </ul> */}
         
-      </div>
+        </div>
+      </BrowserRouter>
      
     )
   }
