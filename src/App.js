@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import firebase from 'firebase';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SignIn from 'components/Auth/signIn';
@@ -11,7 +10,6 @@ class App extends React.Component {
     isSignIn: false,
     user: {},
   }
-
 
   // constructor() {
   //   super()
@@ -32,6 +30,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div className="App">
+        <h1>Välkommen till Foodie var vänligen logga in</h1>
           <Switch>
             <Route exact path="/" component={ SignIn } />
           </Switch>
@@ -41,7 +40,7 @@ class App extends React.Component {
             </div>
             ) : (
               <div>
-                 <h1>Vänligen logga in</h1>
+                
               </div>
           )}
 

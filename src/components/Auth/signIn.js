@@ -3,6 +3,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 
 
+
 firebase.initializeApp({ 
   apiKey: "AIzaSyD__stvI0GuA21uUmghVZpeb5tHCgyTw8A",
   authDomain: "foodie-82b8e.firebaseapp.com"
@@ -19,9 +20,9 @@ class signIn extends Component {
 			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
 			firebase.auth.FacebookAuthProvider.PROVIDER_ID
 		], 
-		callback: {
-			signInSuccess: () => false
-		}
+		// callback: {
+		// 	signInSuccess: () => false
+		// }
 	}
 	componentDidMount = () => {
 		 firebase.auth().onAuthStateChanged(user => {
@@ -37,7 +38,7 @@ class signIn extends Component {
 						<button onClick={()=>firebase.auth().signOut()}>
 							Sign Out
 						</button>
-							<h1>Välkommen {firebase.auth().currentUser.displayName}</h1>
+							<h1>Hej, {firebase.auth().currentUser.displayName}</h1>
 					</span>
 				) : (
 					<StyledFirebaseAuth
