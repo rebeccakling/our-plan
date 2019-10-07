@@ -7,7 +7,6 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import SignIn from 'connectors/SignIn/signIn'
 import About from 'connectors/About/About'
 import FirebaseManager from 'connectors/FirebaseManager'
-import './App.css'
 
 
 if (firebase.apps.length < 1) {
@@ -24,6 +23,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({})
 
 class App extends React.Component {
+
   render() {
     return (
       <BrowserRouter>
@@ -31,10 +31,12 @@ class App extends React.Component {
         <div className="App">
           <Link to="/"> Home</Link> | 
           <Link to="/about"> About</Link>
+
           <Switch>
             <Route exact path="/" component={ () =><SignIn firebase={firebase} />} />
             <Route path="/about" component={ About } />
           </Switch>
+
           { (this.props.auth.isLogedIn) && (
             <span>
               Du är inloggad. Glöm inte att logga ut när du är klar
