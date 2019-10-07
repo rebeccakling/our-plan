@@ -2,7 +2,10 @@ import * as actions from './actions'
 
 const initialState = {
     isLogedIn: false,
-    user: null   
+    user: null,
+    restaurants: [],
+    comments: [],
+    ratings: [],   
 }
 
 export const Reducer = (state = initialState, { type, payload }) => {
@@ -14,6 +17,12 @@ export const Reducer = (state = initialState, { type, payload }) => {
         ...state,
         user: payload.user,
         isLogedIn: payload.isLogedIn,
+      }
+
+    case actions.READ_DATA:
+      return {
+        ...state,
+        [payload.target]: payload.payload,
       }
    default:
      return state

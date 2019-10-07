@@ -12,7 +12,8 @@ import FirebaseManager from 'connectors/FirebaseManager'
 if (firebase.apps.length < 1) {
   firebase.initializeApp({ 
     apiKey: "AIzaSyD__stvI0GuA21uUmghVZpeb5tHCgyTw8A",
-    authDomain: "foodie-82b8e.firebaseapp.com"
+    authDomain: "foodie-82b8e.firebaseapp.com",
+    databaseURL: "https://foodie-82b8e.firebaseio.com",
   })
 }
 
@@ -29,17 +30,27 @@ class App extends React.Component {
       <BrowserRouter>
         <FirebaseManager firebase={firebase} />
         <div className="App">
-          <Link to="/"> Home</Link> | 
-          <Link to="/about"> About</Link>
+          <Link to="/"> Startsida</Link> | 
+          <Link to="/about"> Om foodie</Link>
+          
 
           <Switch>
             <Route exact path="/" component={ () =><SignIn firebase={firebase} />} />
             <Route path="/about" component={ About } />
           </Switch>
 
-          { (this.props.auth.isLogedIn) && (
+          {(this.props.auth.isLogedIn) && (
             <span>
-              Du är inloggad. Glöm inte att logga ut när du är klar
+              {this.props.auth.restaurants.map(item => {
+                return <li key={[]}>
+                {item.name}
+              </li>
+                
+                {/* <div>
+                    {item.name} {' '}
+                    {item.adress}
+                  </div> */}
+              })}
             </span>
           )}
         </div>

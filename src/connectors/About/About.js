@@ -11,7 +11,7 @@ const mapDispatchToProps = dispatch => ({})
 
 const About = props => (
     <div>
-        <h1>This is about foodie</h1>
+        <h1>About Foodie</h1>
         
     {props.auth.isLogedIn ? (
             <div>
