@@ -1,61 +1,45 @@
-import React from 'react';
-import './App.css';
-import firebase from 'firebase';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import SignIn from 'components/Auth/signIn';
+import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import firebase from 'firebase'
+
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import SignIn from 'connectors/SignIn/signIn'
+import About from 'connectors/About/About'
+import FirebaseManager from 'connectors/FirebaseManager'
+import './App.css'
 
 
+if (firebase.apps.length < 1) {
+  firebase.initializeApp({ 
+    apiKey: "AIzaSyD__stvI0GuA21uUmghVZpeb5tHCgyTw8A",
+    authDomain: "foodie-82b8e.firebaseapp.com"
+  })
+}
+
+const mapStateToProps = state => ({
+	auth: state.auth
+})
+
+const mapDispatchToProps = dispatch => ({})
 
 class App extends React.Component {
-  state={
-    isSignIn: false,
-    user: {},
-  }
-
-
-  // constructor() {
-  //   super()
-  //   this.state = {
-  //     data: [
-  //       { message: 'init', name: ''},
-  //     ]
-  //   }
-  // }
-
-  
-	componentDidMount = () => {
-		firebase.auth().onAuthStateChanged(user => {
-			this.setState({ isSignIn: !!user, user })
-		})
-	}  
   render() {
     return (
       <BrowserRouter>
+        <FirebaseManager firebase={firebase} />
         <div className="App">
+          <Link to="/"> Home</Link> | 
+          <Link to="/about"> About</Link>
           <Switch>
-            <Route exact path="/" component={ SignIn } />
+            <Route exact path="/" component={ () =><SignIn firebase={firebase} />} />
+            <Route path="/about" component={ About } />
           </Switch>
-          {this.state.isSignIn ? (
-            <div>
-                {this.state.user.displayName}
-            </div>
-            ) : (
-              <div>
-                 <h1>Vänligen logga in</h1>
-              </div>
+          { (this.props.auth.isLogedIn) && (
+            <span>
+              Du är inloggad. Glöm inte att logga ut när du är klar
+            </span>
           )}
-
-
-          {/* <FirebaseManager dataSync={(payload) => {
-            this.setState({data: payload}) }} />
-            <h1>Hej</h1>
-          <ul>
-            {this.state.data.map((item, i) => {
-              return (<li key={['item',i].join('-')} >{item.message}</li>) 
-            })} 
-          </ul> */}
-        
         </div>
       </BrowserRouter>
      
@@ -64,4 +48,4 @@ class App extends React.Component {
 }
 
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
