@@ -7,7 +7,6 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import SignIn from 'connectors/SignIn/signIn'
 import About from 'connectors/About/About'
 import FirebaseManager from 'connectors/FirebaseManager'
-import './App.css'
 
 
 if (firebase.apps.length < 1) {
