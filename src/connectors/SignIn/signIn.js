@@ -16,29 +16,18 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class signIn extends Component {
-	state={ 
-		isSignIn: false,
-		user: {} 
-	}
 	uiConfig = {
 		signInFlow: "popup",
 		signInOptions: [
 			this.props.firebase.auth.GoogleAuthProvider.PROVIDER_ID,
 			this.props.firebase.auth.FacebookAuthProvider.PROVIDER_ID
 		],
-		//signInSuccessUrl: '/',
-
-		callback: {
-			signInSuccess: () => false
+		callbacks: {
+			signInSuccess: () => false,
+			signInSuccessWithAuthResult: () => false,
 		}
 	}
-	componentDidMount = () => {
-		/*
-		this.props.firebase.auth().onAuthStateChanged(user => {
-			this.props.actions.firebaseAuthSync({ isLogedIn: !!user, user })
-		})
-		*/
-	}
+	
 	render() {
 		return (
 			<div>

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import firebase from 'firebase'
 
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
-import SignIn from 'connectors/Auth/signIn'
+import SignIn from 'connectors/SignIn/signIn'
 import About from 'connectors/About/About'
 import FirebaseManager from 'connectors/FirebaseManager'
 import './App.css'
