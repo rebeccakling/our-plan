@@ -1,6 +1,18 @@
 import React from "react"
-import Firebase, { signInWithEmailAndPassword } from "./../../utils/connectFirebase"
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'proptypes'
+
+import { actionCreators } from './actions'
+
+
+const mapStateToProps = state => ({
+	auth: state.auth
+})
+
+const mapDispatchToProps = dispatch => ({
+ actions: bindActionCreators(actionCreators, dispatch),
+})
 
 class FirebaseManager extends React.Component {
 
@@ -14,9 +26,9 @@ class FirebaseManager extends React.Component {
     }
 
     sync() {
-
+        const { firebase } = this.props
         let items = []
-        const db = Firebase.database()
+        const db = firebase.database()
         const rootRef = db.ref('messages')
           rootRef.on('value', snap => {
             items = []
@@ -29,9 +41,10 @@ class FirebaseManager extends React.Component {
     }
 
     componentDidMount() {
-        signInWithEmailAndPassword('mymail@gmail.com', '12344A').then(user => {
-            this.sync() 
-        })
+        const { firebase } = this.props
+		firebase.auth().onAuthStateChanged(user => {
+			this.props.actions.firebaseAuthSync({ isLogedIn: !!user, user })
+		})
     }
 
     render() {
@@ -41,11 +54,11 @@ class FirebaseManager extends React.Component {
 FirebaseManager.defaultProps = {
   dataSync: () => {}
 }
-/*
-FirebaseManager.proptypes = {
+
+FirebaseManager.propTypes = {
     dataSync: PropTypes.func,
 }
-*/
 
 
-export default FirebaseManager
+
+export default connect(mapStateToProps, mapDispatchToProps)(FirebaseManager)
