@@ -20,7 +20,9 @@ if (firebase.apps.length < 1) {
 }
 
 const mapStateToProps = state => ({
-	auth: state.auth
+  auth: state.auth,
+  color: state.navbar.color,
+  hejhej: 'hello'
 })
 
 const mapDispatchToProps = dispatch => ({})
@@ -30,9 +32,10 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <FirebaseManager firebase={firebase} />
-        <div className="App">
-    
+        <div className="App" style={{backgroundColor: this.props.color}}>
+
           <Navbar />
+          {this.props.hejhej}
           <Switch>
             <Route exact path="/" component={ () =><SignIn firebase={firebase} />} />
             <Route path="/about" component={ About } />
