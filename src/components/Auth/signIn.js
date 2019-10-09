@@ -20,9 +20,6 @@ class signIn extends Component {
 			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
 			firebase.auth.FacebookAuthProvider.PROVIDER_ID
 		], 
-		// callback: {
-		// 	signInSuccess: () => false
-		// }
 	}
 	componentDidMount = () => {
 		 firebase.auth().onAuthStateChanged(user => {

@@ -16,7 +16,6 @@ import { actionCreators } from './actions'
 //}
 */
 
-
 const mapStateToProps = state => ({
 	auth: state.auth
 })
@@ -83,7 +82,7 @@ class FirebaseManager extends React.Component {
             area: '2',
             openinghours: '24/7',
         }
-        return <button onClick={this.addData(myObj)} >Test</button>
+        return <button onClick={this.addData(myObj)} >Lägg till</button>
     }
 }
 FirebaseManager.defaultProps = {
@@ -96,4 +95,7 @@ FirebaseManager.propTypes = {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(FirebaseManager)
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps)
+    (FirebaseManager)

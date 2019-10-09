@@ -35,7 +35,7 @@ class signIn extends Component {
 					<span>
 						<div>Signed In</div>   
 						<button onClick={()=>this.props.firebase.auth().signOut()}>
-							Sign Out
+							Logga ut
 						</button>
 							<h1>Du är inloggad som {this.props.firebase.auth().currentUser.displayName}</h1>
 					</span>

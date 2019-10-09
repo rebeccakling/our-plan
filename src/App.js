@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import firebase from 'firebase'
 
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import SignIn from 'connectors/SignIn/signIn'
 import About from 'connectors/About/About'
+import Navbar from 'connectors/Navbar/navbar'
+import RestaurantsPage from 'connectors/RestaurantsPage/restaurants'
 import FirebaseManager from 'connectors/FirebaseManager'
 
 
@@ -24,32 +26,27 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({})
 
 class App extends React.Component {
-
   render() {
     return (
       <BrowserRouter>
         <FirebaseManager firebase={firebase} />
         <div className="App">
-          <Link to="/"> Startsida</Link> | 
-          <Link to="/about"> Om foodie</Link>
-          
-
+    
+          <Navbar />
           <Switch>
             <Route exact path="/" component={ () =><SignIn firebase={firebase} />} />
             <Route path="/about" component={ About } />
+            <Route path="/restaurants" component={ RestaurantsPage } />
           </Switch>
 
           {(this.props.auth.isLogedIn) && (
             <span>
-              {this.props.auth.restaurants.map(item => {
-                return <li key={[]}>
-                {item.name}
-              </li>
-                
-                {/* <div>
-                    {item.name} {' '}
-                    {item.adress}
-                  </div> */}
+              {this.props.auth.restaurants.map((item,i) => {
+                return (<li key={`restaurants-listing-${i}`}>
+                  {item.name}
+                </li>
+              )
+
               })}
             </span>
           )}
@@ -61,4 +58,7 @@ class App extends React.Component {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps)
+(App);
