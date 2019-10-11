@@ -1,3 +1,3 @@
-import FirebaseManager from './firebaseManager'
+// import FirebaseManager from './firebaseManager'
 
-export default FirebaseManager
+// export default FirebaseManager
