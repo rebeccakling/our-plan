@@ -1,9 +1,9 @@
 import React from 'react'
-import {connect} from 'react-redux'
+// import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-import { actionCreators } from './actions'
-import { actionCreators as restaurantPagesActionCreators} from './../RestaurantsPage/actions'
-import { bindActionCreators } from 'redux'
+// import { actionCreators } from './actions'
+// import { actionCreators as restaurantPagesActionCreators} from './../RestaurantsPage/actions'
+// import { bindActionCreators } from 'redux'
 import SignInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 

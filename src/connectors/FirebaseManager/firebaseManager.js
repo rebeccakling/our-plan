@@ -1,10 +1,10 @@
-import React from "react"
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import PropTypes from 'proptypes'
-//import firebase from 'firebase'
+// import React from "react"
+// import { connect } from 'react-redux'
+// import { bindActionCreators } from 'redux'
+// import PropTypes from 'proptypes'
+// //import firebase from 'firebase'
 
-import { actionCreators } from './actions'
+// import { actionCreators } from './actions'
 
 /*
 //if (firebase.apps.length < 1) {

@@ -1,14 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import firebase from 'firebase'
+// import { connect } from 'react-redux'
+// import { bindActionCreators } from 'redux'
+// import firebase from 'firebase'
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 // import SignIn from 'connectors/SignIn/signIn'
-import About from 'connectors/About/About'
+// import About from 'connectors/About/About'
 import Navbar from 'connectors/Navbar/navbar'
-import RestaurantsPage from 'connectors/RestaurantsPage/restaurants'
-import FirebaseManager from 'connectors/FirebaseManager'
+// import RestaurantsPage from 'connectors/RestaurantsPage/restaurants'
+// import FirebaseManager from 'connectors/FirebaseManager'
 
 
 import Dashboard from 'connectors/dashboard/Dashboard'

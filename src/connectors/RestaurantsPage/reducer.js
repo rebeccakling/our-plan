@@ -1,10 +1,10 @@
-import * as actions from './actions'
+// import * as actions from './actions'
 
-const initialState = {
-   // title: 'init'   
-}
+// const initialState = {
+//    // title: 'init'   
+// }
 
-export const Reducer = (state = initialState, { type, payload }) => {
+// export const Reducer = (state = initialState, { type, payload }) => {
 //    switch (type) {
 //    //    case actions.CHANGE_TITLE:
 //    //       return { 
