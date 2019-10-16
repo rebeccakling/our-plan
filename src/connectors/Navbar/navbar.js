@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 // import { bindActionCreators } from 'redux'
 import SignInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
+import { connect } from 'react-redux'
 
 
 
@@ -21,8 +22,12 @@ const Navbar = () => {
 		</nav>
 	)
 }
+const mapStateToProps = (state) => {
+	return {
 
-export default Navbar
+	}
+}
+export default connect(mapStateToProps)(Navbar)
 
 
 // const mapStateToProps = state => ({

@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+// import { createAction } from 'redux-actions'
 
 //Man kan lägga fler dispatch
 // export const CHANGE_COLOR = "CHANGE_COLOR"
