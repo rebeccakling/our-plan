@@ -1,4 +1,10 @@
 import React, { Component } from 'react'
+import  { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { isEmpty } from 'react-redux-firebase'
+import { withRouter } from 'react-router'
+import { signUp } from './../../store/actions/authActions'
+//import signUp from 'connectors/auth/SignUp'
 
 class SignUp extends Component {
   state = {
@@ -16,28 +22,32 @@ handelChange = (e) => {
 
 handelSubmit = (e) => {
   e.preventDefault()
-  //console.log(this.state)
+  this.props.signUp(this.state)
 }
   render() {
+    if (!isEmpty(this.props.auth) && this.props.location.pathname === '/signup') {
+      return <Redirect to='/' />
+    }
+
   return (
       <div className="container">
         <form onSubmit={this.handelSubmit} className="white">
           <h5 className="grey text text-darken-3">Bli Medlem</h5>
           <div className="input-field">
-              <label htmlFor="email">Email adress</label>
-              <input type="email" id="email" onChange={this.handelChange}/>
+            <label htmlFor="email">Email adress</label>
+            <input type="email" id="email" onChange={this.handelChange}/>
           </div>
           <div className="input-field">
-              <label htmlFor="password">Lösenord</label>
-              <input type="password" id="password" onChange={this.handelChange}/>
+            <label htmlFor="password">Lösenord</label>
+            <input type="password" id="password" onChange={this.handelChange}/>
           </div>
           <div className="input-field">
-              <label htmlFor="firstName">Efterman</label>
-              <input type="text" id="firstName" onChange={this.handelChange}/>
+            <label htmlFor="firstName">Efterman</label>
+            <input type="text" id="firstName" onChange={this.handelChange}/>
           </div>
           <div className="input-field">
-              <label htmlFor="lastName">Efterman</label>
-              <input type="text" id="lastName" onChange={this.handelChange}/>
+            <label htmlFor="lastName">Efterman</label>
+            <input type="text" id="lastName" onChange={this.handelChange}/>
           </div>
           <div className="input-field">
               <button className="btn pink lighten-1 z-depth-0">Bli medlem</button>
@@ -48,4 +58,16 @@ handelSubmit = (e) => {
   }
 }
 
-export default SignUp
+const mapStateToProps = (state) => {
+  return {
+      auth: state.firebase.auth
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUp: (newUser) => dispatch(signUp(newUser ))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp))

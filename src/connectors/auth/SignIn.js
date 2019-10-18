@@ -14,7 +14,7 @@ class SignIn extends Component {
 
   handleChange = (e) => {
     this.setState({
-        [e.target.id]: e.target.value
+      [e.target.id]: e.target.value
     })
   }
 
@@ -23,7 +23,6 @@ class SignIn extends Component {
     this.props.signIn(this.state)
   }
   render() {
-
     if (!isEmpty(this.props.auth) && this.props.location.pathname === '/signin') {
       return <Redirect to='/' />
     }
@@ -38,11 +37,11 @@ class SignIn extends Component {
             <input type="email" id="email" onChange={this.handleChange} value={this.state.email}  />
           </div>
           <div className="input-field">
-              <label htmlFor="password">Lösenord</label>
-              <input type="password" id="password" onChange={this.handleChange}  value={this.state.password} />
+            <label htmlFor="password">Lösenord</label>
+            <input type="password" id="password" onChange={this.handleChange}  value={this.state.password} />
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Inloggad</button>
+            <button className="btn pink lighten-1 z-depth-0">Logga in</button>
               <div className="red-text center">
                 { authError ? <p>{authError}</p> : null }
               </div>
@@ -52,6 +51,7 @@ class SignIn extends Component {
     )
   }
 }
+
 const mapStateToProps = (state) => {
   return {
       authError: state.auth.authError,

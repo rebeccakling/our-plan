@@ -16,17 +16,17 @@ const Navbar = () => {
   const auth = useSelector(state => state.firebase.auth)
   const fb = useSelector(state => state.firebase)
   console.log('fb: ', fb)
-		const links = !isEmpty(auth) ? <SignedInLinks /> : <SignedOutLinks />
+  const links = !isEmpty(auth) ? <SignedInLinks /> : <SignedOutLinks />
 
-		return (
-			<nav className="nav-wrapper grey darken-3">
-				<div className="container">
-					<Link to='/' className="brand-logo">Foodie</Link>
-					{ links }
-				</div>
-			</nav>
-		)
-	}
+  return (
+    <nav className="nav-wrapper grey darken-3">
+      <div className="container">
+        <Link to='/' className="brand-logo">Foodie</Link>
+        { links }
+      </div>
+    </nav>
+  )
+}
 
 
 export default withFirebase(Navbar)
