@@ -1,11 +1,11 @@
-import * as actions from './actions'
+// import * as actions from './actions'
 
-const initialState = {}
+// const initialState = {}
 
-export const Reducer = (state = initialState, { type, payload }) => {
- switch (type) {
-   default:
-     return state
- }
-}
-export default Reducer
+// export const Reducer = (state = initialState, { type, payload }) => {
+//  switch (type) {
+//    default:
+//      return state
+//  }
+// }
+// export default Reducer

@@ -1,8 +1,9 @@
 const initState = {
-    authError: null
+    authError: null,
+    isLogedIn: false,
 }
 
-const authReduser = (state = initState, action) => {
+const authReduser = (state = initState, action, payload) => {
     switch (action.type) {
         case 'LOGIN_ERROR':
             console.log('login error')
@@ -10,15 +11,25 @@ const authReduser = (state = initState, action) => {
             ...state, 
             authError: 'Login failed'
         }
-        case 'LOGIN_SUCCESS':
+        case 'LOGIN':
             console.log('login success')
             return {
                 ...state,
-                authError: null
+                isLogedIn: true,
+                authError: null,
             }
-        case 'SIGNOUT_SUCCESS': 
+        case 'LOGOUT': 
             console.log('sigout success')
-            return state
+            return {
+                ...state,
+                isLogedIn: false,
+            }
+
+        case 'ONCHANGE': 
+            return {
+                ...state,
+                isLogedIn: payload,
+            }
 
         default:
             return state      

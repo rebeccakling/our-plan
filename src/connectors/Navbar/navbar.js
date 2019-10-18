@@ -4,30 +4,32 @@ import { Link } from 'react-router-dom'
 // import { actionCreators } from './actions'
 // import { actionCreators as restaurantPagesActionCreators} from './../RestaurantsPage/actions'
 // import { bindActionCreators } from 'redux'
-import SignInLinks from './SignedInLinks'
+import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
-import { connect } from 'react-redux'
-
+import { useSelector } from 'react-redux'
+import { isEmpty, withFirebase } from 'react-redux-firebase'
 
 
 
 const Navbar = () => {
-	return (
-		<nav className="nav-wrapper grey darken-3">
-			<div className="container">
-				<Link to='/' className="brand-logo">Foodie</Link>
-				<SignInLinks />
-				<SignedOutLinks />
-			</div>
-		</nav>
-	)
-}
-const mapStateToProps = (state) => {
-	return {
+  //const firebase = useFirebase()
+  const auth = useSelector(state => state.firebase.auth)
+  const fb = useSelector(state => state.firebase)
+  console.log('fb: ', fb)
+		const links = !isEmpty(auth) ? <SignedInLinks /> : <SignedOutLinks />
 
+		return (
+			<nav className="nav-wrapper grey darken-3">
+				<div className="container">
+					<Link to='/' className="brand-logo">Foodie</Link>
+					{ links }
+				</div>
+			</nav>
+		)
 	}
-}
-export default connect(mapStateToProps)(Navbar)
+
+
+export default withFirebase(Navbar)
 
 
 // const mapStateToProps = state => ({

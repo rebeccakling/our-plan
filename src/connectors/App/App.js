@@ -3,7 +3,8 @@ import React from 'react'
 // import { bindActionCreators } from 'redux'
 // import firebase from 'firebase'
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { withRouter } from 'react-router'
+import {Switch, Route } from 'react-router-dom'
 // import SignIn from 'connectors/SignIn/signIn'
 // import About from 'connectors/About/About'
 import Navbar from 'connectors/Navbar/navbar'
@@ -16,7 +17,9 @@ import ProjectDetails from 'connectors/projects/ProjectDetails'
 import SignIn from 'connectors/auth/SignIn'
 import SignUp from 'connectors/auth/SignUp'
 import CreateProject from 'connectors/projects/CreateProject'
-
+import FirebaseAuth from 'connectors/auth/FirebaseAuth'
+import { useSelector } from 'react-redux'
+import { isLoaded, withFirebase, isEmpty } from 'react-redux-firebase'
 
 
 // if (firebase.apps.length < 1) {
@@ -35,17 +38,47 @@ import CreateProject from 'connectors/projects/CreateProject'
 
 // const mapDispatchToProps = dispatch => ({})
 
-class App extends React.Component {
-  render() {
+const App = props => {
+
+    const auth = useSelector(state => state.firebase.auth)
+    console.log(props)
+    if(!isLoaded(auth)) {
+      return <div>Laddar...</div>
+    }
+
+    if (isEmpty(auth) && props.location.pathname === '/signup') {
+      return (
+        <React.Fragment>
+          <div className="App">
+            <Navbar />
+            <SignUp />
+          </div>
+        </React.Fragment>  
+      )
+    }
+
+    if (isEmpty(auth)) {
+      return (
+        <React.Fragment>
+          <div className="App">
+            <Navbar />
+            <SignIn />
+          </div>
+        </React.Fragment>  
+      )
+    }
+    //if(isEmpty(auth)) return <Redirect to='/SignIn' />
+
     return (
-      <BrowserRouter>
+      <React.Fragment>
+        <FirebaseAuth fb={props.fb} />
         <div className="App">
           <Navbar />
           <Switch>
             <Route exact path='/' component={ Dashboard } />
             <Route path='/project/:id' component={ ProjectDetails } />
-            <Route path='/SignIn' component={ SignIn } />
-            <Route path='/SignUp' component={ SignUp } />
+            <Route path='/signin' component={ SignIn } />
+            <Route path='/signup' component={ SignUp } />
             <Route path='/CreateProject' component={ CreateProject } />
           </Switch>
         </div>
@@ -77,11 +110,11 @@ class App extends React.Component {
             </span>
           )} */}
         {/* </div> */}
-      </BrowserRouter>
+      </React.Fragment>
      
     )
   }
-}
+
 
 
 // export default connect(
@@ -89,4 +122,4 @@ class App extends React.Component {
 //   mapDispatchToProps)
 // (App);
 
-export default App
+export default withRouter(withFirebase(App))
