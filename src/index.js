@@ -32,6 +32,7 @@ console.log('store: ',store)
 const rrfConfig = {
     firebaseConfig,
     useFirestoreForProfile: true,
+    userProfile: 'users',
     attachAuthIsReady: true,
 }
 
@@ -44,11 +45,12 @@ const rrfConfig = {
 }
 
 
+
 ReactDOM.render(
   <Provider store={store}>
    <ReactReduxFirebaseProvider {...rrfProps}>
     <BrowserRouter>
-      <App fb={firebaseApp} />
+      <App fireb={firebaseApp} />
     </BrowserRouter>
    </ReactReduxFirebaseProvider>
   </Provider>, document.getElementById('root'))

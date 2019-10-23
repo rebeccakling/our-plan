@@ -25,32 +25,36 @@ handelSubmit = (e) => {
   this.props.signUp(this.state)
 }
   render() {
-    if (!isEmpty(this.props.auth) && this.props.location.pathname === '/signup') {
+    if (!isEmpty(this.props.auth) ) {
       return <Redirect to='/' />
     }
 
+  const { authError } = this.props
   return (
       <div className="container">
         <form onSubmit={this.handelSubmit} className="white">
-          <h5 className="grey text text-darken-3">Bli Medlem</h5>
+          <h5 className="grey text text-darken-3">Sign Up</h5>
           <div className="input-field">
-            <label htmlFor="email">Email adress</label>
+            <label htmlFor="email">Email</label>
             <input type="email" id="email" onChange={this.handelChange}/>
           </div>
           <div className="input-field">
-            <label htmlFor="password">Lösenord</label>
+            <label htmlFor="password">Password</label>
             <input type="password" id="password" onChange={this.handelChange}/>
           </div>
           <div className="input-field">
-            <label htmlFor="firstName">Efterman</label>
+            <label htmlFor="firstName">First Name</label>
             <input type="text" id="firstName" onChange={this.handelChange}/>
           </div>
           <div className="input-field">
-            <label htmlFor="lastName">Efterman</label>
+            <label htmlFor="lastName">Last Name</label>
             <input type="text" id="lastName" onChange={this.handelChange}/>
           </div>
           <div className="input-field">
-              <button className="btn pink lighten-1 z-depth-0">Bli medlem</button>
+            <button className="btn pink lighten-1 z-depth-0">SIGN UP</button>
+            <div className="red-text center">
+              { authError ? <p>{ authError }</p> : null } 
+            </div>
           </div>
         </form>   
       </div>
@@ -60,13 +64,15 @@ handelSubmit = (e) => {
 
 const mapStateToProps = (state) => {
   return {
-      auth: state.firebase.auth
+      auth: state.firebase.auth,
+      localAuth: state.auth,
+      authError: state.auth.authError
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    signUp: (newUser) => dispatch(signUp(newUser ))
+    signUp: newUser => dispatch(signUp(newUser)),
   }
 }
 

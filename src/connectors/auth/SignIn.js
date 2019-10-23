@@ -31,17 +31,17 @@ class SignIn extends Component {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey text text-darken-3">Logga In</h5>
+          <h5 className="grey text text-darken-3">Sign In</h5>
           <div className="input-field">
-            <label htmlFor="email">Email adress</label>
+            <label htmlFor="email">Email</label>
             <input type="email" id="email" onChange={this.handleChange} value={this.state.email}  />
           </div>
           <div className="input-field">
-            <label htmlFor="password">Lösenord</label>
+            <label htmlFor="password">Password</label>
             <input type="password" id="password" onChange={this.handleChange}  value={this.state.password} />
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Logga in</button>
+            <button className="btn pink lighten-1 z-depth-0">SIGN IN</button>
               <div className="red-text center">
                 { authError ? <p>{authError}</p> : null }
               </div>

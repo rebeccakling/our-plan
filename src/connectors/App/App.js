@@ -41,7 +41,7 @@ import { isLoaded, withFirebase, isEmpty } from 'react-redux-firebase'
 const App = props => {
 
     const auth = useSelector(state => state.firebase.auth)
-    console.log(props)
+    console.log('App props', props)
     if(!isLoaded(auth)) {
       return <div>Laddar...</div>
     }
@@ -50,7 +50,7 @@ const App = props => {
       return (
         <React.Fragment>
           <div className="App">
-            <Navbar />
+            <Navbar fb={props.fireb} />
             <SignUp />
           </div>
         </React.Fragment>  
@@ -61,19 +61,19 @@ const App = props => {
       return (
         <React.Fragment>
           <div className="App">
-            <Navbar />
+            <Navbar fb={props.fireb} />
             <SignIn />
           </div>
         </React.Fragment>  
       )
     }
     //if(isEmpty(auth)) return <Redirect to='/SignIn' />
-
+    
     return (
       <React.Fragment>
-        <FirebaseAuth fb={props.fb} />
+        <FirebaseAuth fb={props.fireb} />
         <div className="App">
-          <Navbar />
+          <Navbar fb={props.fireb} />
           <Switch>
             <Route exact path='/' component={ Dashboard } />
             <Route path='/project/:id' component={ ProjectDetails } />

@@ -19,6 +19,7 @@ class CreateProject extends Component {
       e.preventDefault()
       //console.log(this.state)
       this.props.createProject(this.state)
+      this.props.history.push('/')
   }
   render() {
     // const { auth } = this.props
@@ -26,17 +27,17 @@ class CreateProject extends Component {
     return (
       <div className="container">
         <form onSubmit={this.handelSubmit} className="white">
-          <h5 className="grey text text-darken-3">Skapa nytt projekt</h5>
+          <h5 className="grey text text-darken-3">Create project</h5>
           <div className="input-field">
-              <label htmlFor="title">Rubrik</label>
+              <label htmlFor="title">Title</label>
               <input type="text" id="title" onChange={this.handelChange}/>
           </div>
           <div className="input-field">
-              <label htmlFor="content">Text</label>
+              <label htmlFor="content">Content</label>
               <textarea id="content" className="materialize-textarea" onChange={this.handelChange}></textarea>  
           </div>
           <div className="input-field">
-              <button className="btn pink lighten-1 z-depth-0">Publicera</button>
+              <button className="btn pink lighten-1 z-depth-0">CREATE</button>
           </div>
         </form>   
       </div>
