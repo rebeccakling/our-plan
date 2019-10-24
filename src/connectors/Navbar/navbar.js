@@ -10,23 +10,19 @@ import { useSelector } from 'react-redux'
 import { isEmpty, withFirebase } from 'react-redux-firebase'
 
 const Navbar = (props) => {
-  //const firebase = useFirebase()
   const auth = useSelector(state => state.firebase.auth)
   const profile = useSelector(state => state.firebase.profile)
-  // const fb = useSelector(state => state.firebase)
 
-  const user = props.fb.auth().currentUser;
+  //const user = props.fb.auth().currentUser;
 
-  //console.log('currentUser: ', props.fb.auth().currentUser)
-
-  console.log('profile: ', profile)
-  console.log('user: ', user)
+  // console.log('profile: ', profile)
+  // console.log('user: ', user)
   const links = !isEmpty(auth) ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
 
   return (
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
-        <Link to='/' className="brand-logo">Foodie</Link>
+        <Link to='/' className="brand-logo">My Plan</Link>
         { links }
       </div>
     </nav>

@@ -6,20 +6,17 @@ const initState = {
 const authReduser = (state = initState, action, payload) => {
   switch (action.type) {
     case 'LOGIN_ERROR':
-        console.log('login error')
       return {
         ...state, 
         authError: 'Login failed'
     }
     case 'LOGIN':
-      console.log('login success')
       return {
         ...state,
         isLogedIn: true,
         authError: null,
       }
     case 'LOGOUT': 
-      console.log('sigout success')
       return {
         ...state,
         isLogedIn: false,
@@ -30,13 +27,11 @@ const authReduser = (state = initState, action, payload) => {
         isLogedIn: payload,
       }
     case 'SIGNUP': 
-      console.log('signup success')
       return {
         ...state,
         authError: null,
       }
     case 'SIGNUP_ERROR': 
-      console.log('signup error')
       return {
         ...state,
         authError: action.err.message,

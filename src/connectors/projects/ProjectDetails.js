@@ -17,7 +17,7 @@ const ProjectDetails = (props) => {
               <p>{ project.content}</p>
           </div>  
           <div className="card-action grey lighten-4-text">
-              <div>Skriven av {project.authorFirstName} {project.authorLastName} </div>
+              <div>Written by {project.authorFirstName} {project.authorLastName} </div>
               <div>{moment(project.createAt.toDate()).calendar()}</div>
           </div>
         </div>
@@ -26,14 +26,13 @@ const ProjectDetails = (props) => {
   }else {
     return (
       <div className="container center">
-          <p>Loading...</p>
+          <p>Looading...</p>
       </div>
     )
   }   
 }
 
 const mapStateToProps = (state, ownProps) => {
-  //console.log(state)
   const id = ownProps.match.params.id
   const projects = state.firestore.data.projects
   const project = projects ? projects[id] : null

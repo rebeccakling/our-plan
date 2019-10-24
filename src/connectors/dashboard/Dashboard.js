@@ -11,13 +11,13 @@ class Dashboard extends React.Component {
     return ( 
       <div className="dashboard container">
         <div className="row">
-            {/* Till projekt  */}
+            {/* To projekt  */}
           <div className="col s12 m6">
-              <ProjectList  projects={projects}/>
+            <ProjectList  projects={projects}/>
           </div>
-            {/* Till Notifications */}
+            {/* To Notifications */}
           <div className="col s12 m5 offset-m1">
-              <Notifications notifications={notifications} />
+            <Notifications notifications={notifications} />
           </div> 
         </div>
       </div>
@@ -35,7 +35,7 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'projects' },
-    { collection: 'notifications', limit: 3 }
+    { collection: 'projects', orderBy: ['createAt', 'desc']},
+    { collection: 'notifications', limit: 3, orderBy: ['time', 'desc']}
   ])
 )(Dashboard)

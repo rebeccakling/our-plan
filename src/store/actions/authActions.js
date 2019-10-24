@@ -39,8 +39,6 @@ export const signUp = (newUser) => {
 	return (dispatch, getState, { getFirebase, getFirestore}) => {
 
 		const firebase = getFirebase()
-		//const firestore = getFirestore()
-
 		const userName = `${newUser.firstName.toLowerCase()}-${newUser.lastName.toLowerCase()}`
 		const displayName = `${newUser.firstName} ${newUser.lastName}`
 		const email = newUser.email
@@ -72,37 +70,4 @@ export const signUp = (newUser) => {
 }
 	  
 
-
-/*
-
------------------------------------------------------------------------------------------------------
-		firebase.auth().createUserWithEmailAndPassword(
-      newUser.email,
-      newUser.password
-    ).then((resp) => {
-*/
-		/*
-      return firestore.collection('users').doc(resp.user.uid).set({
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
-        initials: newUser.firstname[0] + newUser.lastName[0]
-	  })
-	  
-	 const user = firebase.auth().currentUser
-
-	 user.updateProfile({
-		displayName: `${newUser.firstName} ${newUser.lastName}`,
-		initials: `${newUser.firstName[0].toUpperCase()} ${newUser.lastName[0].toUpperCase()}`,
-	}).then(function() {
-		console.log('great success')
-	}).catch(function(error) {
-		console.log('Sorrry dude. Error')
-	});
-	  
-    }).then(() => {
-		dispatch({ type: 'SIGNUP'})
-    }).catch((err) => {
-    	dispatch({ type: 'SIGNUP_ERROR', err })	
-	})
-	*/
 

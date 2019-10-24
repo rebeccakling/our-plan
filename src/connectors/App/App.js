@@ -17,7 +17,6 @@ import ProjectDetails from 'connectors/projects/ProjectDetails'
 import SignIn from 'connectors/auth/SignIn'
 import SignUp from 'connectors/auth/SignUp'
 import CreateProject from 'connectors/projects/CreateProject'
-import FirebaseAuth from 'connectors/auth/FirebaseAuth'
 import { useSelector } from 'react-redux'
 import { isLoaded, withFirebase, isEmpty } from 'react-redux-firebase'
 
@@ -41,9 +40,8 @@ import { isLoaded, withFirebase, isEmpty } from 'react-redux-firebase'
 const App = props => {
 
     const auth = useSelector(state => state.firebase.auth)
-    console.log('App props', props)
     if(!isLoaded(auth)) {
-      return <div>Laddar...</div>
+      return <div>Loading...</div>
     }
 
     if (isEmpty(auth) && props.location.pathname === '/signup') {
@@ -67,11 +65,10 @@ const App = props => {
         </React.Fragment>  
       )
     }
-    //if(isEmpty(auth)) return <Redirect to='/SignIn' />
     
     return (
       <React.Fragment>
-        <FirebaseAuth fb={props.fireb} />
+
         <div className="App">
           <Navbar fb={props.fireb} />
           <Switch>
