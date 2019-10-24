@@ -25,6 +25,7 @@ class Dashboard extends React.Component {
   }
 }
 
+//Puts projects and notifications in order
 const mapStateToProps = (state) => {
   return {
     projects: state.firestore.ordered.projects,
