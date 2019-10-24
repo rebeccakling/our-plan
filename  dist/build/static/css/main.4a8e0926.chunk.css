@@ -1,0 +1,2 @@
+html{min-height:100%}body{margin:0;font-family:sans-serif;background-color:#fafafa;min-block-size:100%}form{padding:20px;margin-top:60px}form button,form h5{margin:20px 0}input[type=email]:not(.browser-default):focus:not([readinly]),input[type=password]:not(.browser-default):focus:not([readinly]),input[type=text]:not(.browser-default):focus:not([readinly]),textarea.materialize-textarea:focus:not([readonly]){border-color:#ec407a;box-shadow:none}
+/*# sourceMappingURL=main.4a8e0926.chunk.css.map */
