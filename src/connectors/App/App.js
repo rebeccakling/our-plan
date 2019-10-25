@@ -41,7 +41,6 @@ const App = props => {
     
     return (
       <React.Fragment>
-
         <div className="App">
           <Navbar fb={props.fireb} />
           <Switch>
